@@ -1,11 +1,11 @@
 ﻿import os, sys, threading, time
 
-#	добавить импорт своего модуля по шаблону 
-#	import asm<код группы>.st<номер по журналу>.main
 
 MENU = [
 		["[1904-00] Образец 1904", "asm1904/st00/main.py"],
 		["[1905-00] Образец 1905", "asm1905/st00/main.py"],
+
+		["[1905-19] Шишкин", "asm1905/st19/main.py"],
 		
 #		добавить пункт меню для вызова своей главной функции по шаблону:
 #		["[<код группы>-<номер по журналу>] <Фамилия>", "<путь до модуля>"],
@@ -27,7 +27,7 @@ try:
 		try:
 			app = MENU[menu()][1]
 			threading.Thread(target=launcher).start()
-			os.system("python "+app)
+			os.system("python3 "+app)
 		except KeyboardInterrupt:
 			pass
 except Exception as ex:
