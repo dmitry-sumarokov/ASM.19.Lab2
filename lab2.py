@@ -4,8 +4,8 @@
 MENU = [
 		["[1904-00] Образец 1904", "asm1904/st00/main.py"],
 		["[1905-00] Образец 1905", "asm1905/st00/main.py"],
-        
 		["[1904-01] Абраменкова", "asm1904/st01/main.py"],
+		["[1905-11] Ремизова", "asm1905/st11/main.py"],
 		["[1905-19] Шишкин", "asm1905/st19/main.py"],
 		
 #		добавить пункт меню для вызова своей главной функции по шаблону:
@@ -28,7 +28,7 @@ try:
 		try:
 			app = MENU[menu()][1]
 			threading.Thread(target=launcher).start()
-			os.system("python3 "+app)
+			os.system("python "+app)
 		except KeyboardInterrupt:
 			pass
 except Exception as ex:
