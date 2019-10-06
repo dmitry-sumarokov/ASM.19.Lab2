@@ -1,40 +1,48 @@
-if __name__ == '__main__':
-    from group import group
-else:
-    from .group import group
+from group import group
+#from group import Human
+from flask import Flask
+from flask import g
 
-#from .Human import group
+app = Flask(__name__)
 
-group=group()
+def GetGroup():
+        if 'group' not in g:
+                g.group = group()              
+        return g.group
 
-def main():
-    menu = {"1":("Добавить студента", group.insertStudent),
-        "2":("Добавить старосту", group.insertStarosta),
-        "3":("Добавить профорга", group.insertProforg),        
-        "4":("Специальное действие", group.execute),
-        "5":("Редактировать", group.edit),
-        "6":("Удалить", group.delete),
-        "7":("Показать", group.show),
-        "8":("Считать из файла", group.readfile),
-        "9":("Записать в файл", group.writefile),
-        "10":("Очистить", group.clean),
-        "11":("Выход", None)}
-    while True:
-        print('')
-        print('Меню:')
-        for k in range(1,12):
-            print(k, " : ", menu[str(k)][0])
-        x = input()
-        if int(x)==11:
-            break
-        if int(x) >= 1 and int(x) < 12:
-            menu[x][1]()
-        else:
-            print('Некорректный ввод')
-        
+"""def GetHuman():
+        if 'humen' not in g:
+                g.human = Human()              
+        return g.human"""
+    
+@app.route("/")
+def index():
+	return GetGroup().PrintHeader() + GetGroup().ShowGroup() + GetGroup().PrintFooter()
 
+@app.route("/ShowForm/<int:id>")
+def ShowForm(id):
+	return GetGroup().PrintHeader() + GetGroup().ShowForm(id) + GetGroup().PrintFooter()
 
-if __name__ == '__main__':
-	main()
+@app.route("/DeleteItem/<int:id>")
+def DeleteItem(id):
+	return GetGroup().PrintHeader() + GetGroup().DeleteItem(id) + GetGroup().PrintFooter()
 
+@app.route("/AddItemStudent", methods=['POST'])
+def AddItemStudent():
+	return GetGroup().PrintHeader() + GetGroup().AddItemStudent() + GetGroup().PrintFooter()
 
+@app.route("/AddItemStarosta", methods=['POST'])
+def AddItemStarosta():
+	return GetGroup().PrintHeader() + GetGroup().AddItemStarosta() + GetGroup().PrintFooter()
+
+@app.route("/AddItemProforg", methods=['POST'])
+def AddItemProforg():
+	return GetGroup().PrintHeader() + GetGroup().AddItemProforg() + GetGroup().PrintFooter()
+
+@app.teardown_appcontext
+def finish(ctx):
+        GetGroup().store()
+
+       
+if __name__ == "__main__":
+	app.run(debug=True)
