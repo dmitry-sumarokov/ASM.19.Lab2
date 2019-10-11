@@ -212,7 +212,7 @@ class Soloist(Tancor):
 class Dancer(Tancor):
     def do_init(self,request=None):
         if not request:
-            self._role = int(input('Введите количество дней до дедлайна: '))
+            self._role = int(input('Введите роль в спектакле: '))
         else:
             if ("role" not in request.form or not request.form['role']):
                  return("""Введите роль в спектакле: <input type="text" name="role">""")
@@ -221,7 +221,7 @@ class Dancer(Tancor):
 
     def do_edit(self,request=None):
         if not request:
-            new_role = input('Введите количество дней до дедлайна: ')
+            new_role = input('Введите рольв спектакле: ')
             self._role = int(new_role) if new_role else self._role    
         else:
             if ("role" not in request.form or not request.form['role']):
@@ -266,7 +266,7 @@ class Person_flask(Person):
         if ("num_w" not in request.form or not request.form['num_w']):
             return(self.print_group2(request)+"""
     <form action="/" method="POST">
-        Введите номер сотрудника: <input type="number" name="num_w">
+        Введите номер участника труппы: <input type="number" name="num_w">
         <input type="hidden" name="num" value="""+request.form['num']+""">
        <input type="submit" value="Записать">
     </form>
@@ -307,7 +307,7 @@ class Person_flask(Person):
         if ("num_w" not in request.form or not request.form['num_w']):
             return(self.print_group2(request)+"""
     <form action="/" method="POST">
-        Введите номер сотрудника: <input type="number" name="num_w">
+        Введите номер участника труппы: <input type="number" name="num_w">
         <input type="hidden" name="num" value="""+request.form['num']+""">
         <input type="submit" value="Записать">
     </form>
@@ -333,7 +333,7 @@ class Person_flask(Person):
         if ("num_w" not in request.form or not request.form['num_w']):
             return(self.print_group2(request)+"""
     <form action="/" method="POST">
-        Введите номер сотрудника: <input type="number" name="num_w">
+        Введите номер участника труппы: <input type="number" name="num_w">
         <input type="hidden" name="num" value="""+request.form['num']+""">
         <input type="submit" value="Записать">
     </form>
