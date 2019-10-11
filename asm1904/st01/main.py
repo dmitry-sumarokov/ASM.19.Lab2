@@ -1,5 +1,5 @@
 from group import group
-#from group import Human
+from group import Human
 from flask import Flask
 from flask import g
 
@@ -10,14 +10,18 @@ def GetGroup():
                 g.group = group()              
         return g.group
 
-"""def GetHuman():
+def GetHuman():
         if 'humen' not in g:
                 g.human = Human()              
-        return g.human"""
+        return g.human
     
 @app.route("/")
 def index():
 	return GetGroup().PrintHeader() + GetGroup().ShowGroup() + GetGroup().PrintFooter()
+
+@app.route("/HumanBehaviour/<int:id>/<int:f>")
+def HumanBehaviour(id, f): 
+    return GetGroup().PrintHeader() + GetGroup().HumanBehaviour(id, f) + GetGroup().PrintFooter()
 
 @app.route("/ShowForm/<int:id>")
 def ShowForm(id):

@@ -10,7 +10,9 @@ from flask import request
 import pickle    
 
 class Human():
-     
+    
+    IO_behavior = None
+    
     def __init__(self):
         self.id = 0
         self.name = ''
@@ -22,27 +24,33 @@ class Human():
         self.name = request.form.get('name')
         self.age = request.form.get('age')
         self.email = request.form.get('email')
+        
+    def ShowForm(self):
+        return self.IO_behaviour.ShowForm(self)
+        
+    def Show(self):
+        return self.IO_behaviour.Show(self)
 
 class IOWebStudent():
-    def ShowForm(self, id):
-        return self.GetItem(id,0).Show("formstudent.tpl")
+    def ShowForm(self, h):
+        return render_template("formstudent.tpl", **h.__dict__)    
     
-    def Show (self):
-        return self.render_template("student.tpl", **self.__dict__)    
+    def Show (self, h):
+        return render_template("student.tpl", **h.__dict__)    
     
 class IOWebStarosta():
-    def ShowForm(self, id):
-        return self.GetItem(id,1).Show("formstarosta.tpl")    
+    def ShowForm(self, h):
+        return render_template("formstarosta.tpl", **h.__dict__)    
 
-    def Show (self):
-        return self.render_template("starosta.tpl", **self.__dict__)    
+    def Show (self, h):
+        return render_template("starosta.tpl", **h.__dict__)    
     
 class IOWebProforg():
-    def ShowForm(self, id):
-        return self.GetItem(id,2).Show("formproforg.tpl")
+    def ShowForm(self, h):
+        return render_template("formproforg.tpl", **h.__dict__)
     
-    def Show (self):
-        return self.render_template("proforg.tpl", **self.__dict__)
+    def Show (self, h):
+        return render_template("proforg.tpl", **h.__dict__)
     
 class Student(Human):
     IO_behaviour = IOWebStudent()
@@ -63,13 +71,7 @@ class group:
         except:
             self.items = {}
             self.maxid = 0
-            
-    def ShowForm(self, id):
-        self.IO_behaviour.ShowForm(self)
         
-    def Show(self):
-        self.IO_behaviour.Show(self)
-
     def GetItem(self, id, f):
         if id <= 0:
             if f == 0:
@@ -136,8 +138,6 @@ class group:
         r += render_template("add.tpl")
         return r
     
-   # def ShowFromClass(self, id):
-    #    a=""
-     #   a = self.items[id].ShowForm(id)
-      #  return a
-        
+    def HumanBehaviour(self, id, f):
+        obj = self.GetItem(id, f)
+        return obj.ShowForm()        
