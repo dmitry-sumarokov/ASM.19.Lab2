@@ -74,10 +74,10 @@ class Group:
 
 
     def save_to_file(self):
-        with open(os.path.join(os.path.abspath(__name__).replace('/group', '/'), 'group.p'), 'wb') as f:
+        with open(os.path.join(os.path.abspath(__name__).replace('\group', '\\'), 'group.p'), 'wb') as f:
             pickle.dump(self._workers, f)
     def load_from_file(self):
-        with open(os.path.join(os.path.abspath(__name__).replace('/group', '/'), 'group.p'), 'rb') as f:
+        with open(os.path.join(os.path.abspath(__name__).replace('\group', '\\'), 'group.p'), 'rb') as f:
             self._workers = pickle.load(f)
     
 
