@@ -130,7 +130,7 @@ class Context():
     </html>""")
 
     def do_print(self,number, per):
-        return('________________{0}_________________{1} Фамилия: {2}{3} Имя: {4}{5} Стаж: {6}{7} {8}'.format(
+        return('________________{0}_________________{1} Имя: {2}{3} Возраст: {4}{5} Стаж: {6}{7} {8}'.format(
                                 number,per, self._person._age,per, self._person._name,per, self._person._stazh,per, self._person.do_print(per)))
 
 
