@@ -1,0 +1,8 @@
+<h1>Добавление студента в картотеку</h1>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        Запишите id записи:<br>
+        {{ form.type }}
+    <p>{{ form.submit() }}</p>
+</form>

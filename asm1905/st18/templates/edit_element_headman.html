@@ -1,0 +1,17 @@
+<h1>Редактирование старосты в картотеке</h1>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        ФИО<br>
+        {{ form.fio(value = el.fio) }}
+    </p>
+    <p>
+        Возраст:<br>
+        {{ form.age(value = el.age) }}
+    </p>
+    <p>
+        Номер телефона:<br>
+        {{ form.connect(value = el.tel_number) }}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
