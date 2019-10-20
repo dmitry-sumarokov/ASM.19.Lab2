@@ -36,7 +36,7 @@ try:
 		try:
 			app = MENU[menu()][1]
 			threading.Thread(target=launcher).start()
-			os.system("python "+app)
+			os.system("python3 "+app)
 		except KeyboardInterrupt:
 			pass
 except Exception as ex:
