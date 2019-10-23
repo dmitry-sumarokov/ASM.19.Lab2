@@ -1,0 +1,17 @@
+<h1>Редактирование студента в картотеке</h1>
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+        ФИО<br>
+        {{ form.fio(value = el.fio) }}
+    </p>
+    <p>
+        Возраст:<br>
+        {{ form.age(value = el.age) }}
+    </p>
+    <p>
+        Email:<br>
+        {{ form.connect(value = el.email) }}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>

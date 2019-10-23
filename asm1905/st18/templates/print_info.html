@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Информация о картотеке</title>
+    </head>
+    <body>
+      <div><a href="http://127.0.0.1:5000/load_from_file" class="button">Загрузить из файла</a><div>
+      <div><a href="http://127.0.0.1:5000/save_in_file" class="button">Сохранить в файл</a><div>
+      <div><a href="http://127.0.0.1:5000/add" class="button">Добавить элемент</a><div>
+      <div><a href="http://127.0.0.1:5000/clear_container" class="button">Очистить список</a><div>
+      <br>
+      {% for el in elements %}
+        <div><p><b>#{{ el.ids }} {{ el.type }}</b></p></div>
+        <div><p><b>ФИО: </b>{{ el.fio }}</p></div>
+        <div><p><b>Возраст: </b>{{ el.age }}</p></div>
+        {% if el.tel_number %}
+          <div><p><b>Номер телефона: </b>{{ el.tel_number }}</p></div>
+        {% else %}
+          <div><p><b>Email: </b>{{ el.email }}</p></div>
+        {% endif %}
+        <div><a href="http://127.0.0.1:5000/edit?id={{ el.ids }}" class="button">Редактировать</a><div>
+        <br>
+        {% endfor %}
+    </body>
+</html>
