@@ -23,17 +23,13 @@ def GetMan():
 def index():
 	return GetMan().PrintHeader() + GetMan().ShowMan() + GetMan().PrintFooter()
 
-@main.route("/ShowFormAnalyst/<int:id>")
-def ShowFormAnalyst(id):
-	return GetMan().PrintHeader() + GetMan().ShowFormAnalyst(id) + GetMan().PrintFooter()
+@main.route("/ManBehaviour/<int:id>/<int:f>")
+def ManBehaviour(id, f): 
+    return GetMan().PrintHeader() + GetMan().ManBehaviour(id, f) + GetMan().PrintFooter()
 
-@main.route("/ShowFormDeveloper/<int:id>")
-def ShowFormDeveloper(id):
-	return GetMan().PrintHeader() + GetMan().ShowFormDeveloper(id) + GetMan().PrintFooter()
-
-@main.route("/ShowFormTester/<int:id>")
-def ShowFormTester(id):
-	return GetMan().PrintHeader() + GetMan().ShowFormTester(id) + GetMan().PrintFooter()
+@main.route("/ShowForm/<int:id>")
+def ShowForm(id):
+	return GetMan().PrintHeader() + GetMan().ShowForm(id) + GetMan().PrintFooter()
 
 @main.route("/DeleteItem/<int:id>")
 def DeleteItem(id):

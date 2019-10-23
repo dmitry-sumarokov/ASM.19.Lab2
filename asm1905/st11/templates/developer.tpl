@@ -5,4 +5,4 @@ Category: {{category}}<br>
 Programming_language: {{programming_language}}<br>
 Time: {{time}}<br>
 <a href="/DeleteItem/{{id}}">Delete</a><br>
-<a href="/ShowFormDeveloper/{{id}}">Edit</a><br>
+<a href="/ManBehaviour/{{id}}/1">Edit</a><br>
