@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование</title>
+</head>
+<body>
+<h1>Выберете студента для изменения данных</h1>
+{% for i in range(length) %}
+<a href="/group/edit/{{i}}">{{i}}</a><br>
+{% endfor %}
+<br>
+</body>
+</html>
