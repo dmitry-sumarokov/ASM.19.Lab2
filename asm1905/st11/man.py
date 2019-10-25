@@ -5,25 +5,10 @@ Created on Fri Sep 27 20:51:12 2019
 @author: alena
 """
 
-
-
-
 from flask import render_template
 from flask import request
 
 import pickle, datetime
-        
-class AnalystBehaviour():
-    def execute(self, name):
-        print('Analyst '+ name)
-
-class DeveloperBehaviour():
-    def execute(self, name):
-        print('Developer '+ name)
-        
-class TesterBehaviour():
-    def execute(self, name):
-        print('Tester '+ name)
 
 class Man():
     
@@ -34,21 +19,14 @@ class Man():
             self.items = {}
             self.maxid = 0
 
-    def GetItemAnalyst(self, id):
+    def GetItem(self, id, f):
         if id <= 0:
-            return AnalystItem()
-        else:
-            return self.items[id]
-
-    def GetItemTester(self, id):
-        if id <= 0:
-            return Tester()
-        else:
-            return self.items[id]
-        
-    def GetItemDeveloper(self, id):
-        if id <= 0:
-            return Developer()
+            if f == 0:
+                return AnalystItem()
+            if f == 1:
+                return Developer()
+            if f == 2:
+                return Tester()
         else:
             return self.items[id]
         
@@ -65,31 +43,21 @@ class Man():
 
     def PrintFooter(self):
         return render_template("footer.tpl")
-
+    
     def ShowMan(self):
         r = ""
         for (key, item) in self.items.items():
-            if (type(item) is AnalystItem):
-                r += item.Show("item.tpl")
-            if (type(item) is Developer):
-                r += item.Show("developer.tpl")
-            if (type(item) is Tester):
-                r += item.Show("tester.tpl")
+            r += item.Show()
         r += render_template("add.tpl")
         return r
     
-    def ShowFormAnalyst(self, id):
-        return self.GetItemAnalyst(id).Show("form.tpl")
-    
-    def ShowFormDeveloper(self, id):
-        return self.GetItemDeveloper(id).Show("formdeveloper.tpl")
-        
-    def ShowFormTester(self, id):
-        return self.GetItemTester(id).Show("formtester.tpl")
-    
+    def ManBehaviour(self, id, f):
+        obj = self.GetItem(id, f)
+        return obj.ShowForm()  
+
     def AddItemAnalyst(self):
         id = int(request.form.get('id', 0))
-        item = self.GetItemAnalyst(id)
+        item = self.GetItem(id,0)
         item.SetData()
         if id <=0:
             self.maxid +=1
@@ -99,7 +67,7 @@ class Man():
         
     def AddItemTester(self):
         id = int(request.form.get('id', 0))
-        item = self.GetItemTester(id)
+        item = self.GetItem(id,2)
         item.SetData()
         if id <=0:
             self.maxid +=1
@@ -109,7 +77,7 @@ class Man():
     
     def AddItemDeveloper(self):
         id = int(request.form.get('id', 0))
-        item = self.GetItemDeveloper(id)
+        item = self.GetItem(id,1)
         item.SetData()
         if id <=0:
             self.maxid +=1
@@ -120,8 +88,29 @@ class Man():
     def DeleteItem(self, id):
         del(self.items[id])
         return self.ShowMan()
-    
 
+        
+class AnalystBehaviour():
+    def ShowForm(self, h):
+        return render_template("form.tpl", **h.__dict__)    
+    
+    def Show (self, h):
+        return render_template("item.tpl", **h.__dict__)    
+    
+class DeveloperBehaviour():
+    def ShowForm(self, h):
+        return render_template("formdeveloper.tpl", **h.__dict__)    
+
+    def Show (self, h):
+        return render_template("developer.tpl", **h.__dict__)    
+    
+class TesterBehaviour():
+    def ShowForm(self, h):
+        return render_template("formtester.tpl", **h.__dict__)
+    
+    def Show (self, h):
+        return render_template("tester.tpl", **h.__dict__)
+    
 class AnalystItem:
     behaviour = AnalystBehaviour()
     def __init__(self):
@@ -136,9 +125,12 @@ class AnalystItem:
         self.name = request.form.get('name')
         self.surname = request.form.get('surname')
         self.category = request.form.get('category')
-
-    def Show(self, tpl):
-        return render_template(tpl, **self.__dict__)
+        
+    def ShowForm(self):
+        return self.behaviour.ShowForm(self)
+        
+    def Show(self):
+        return self.behaviour.Show(self)
     
     def execute(self):
         self.behaviour.execute(self.name)

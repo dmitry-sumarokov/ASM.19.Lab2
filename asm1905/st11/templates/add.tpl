@@ -1,5 +1,5 @@
 <hr>
 Add new item<br>
-<a href="/ShowFormAnalyst/0">Add Analyst</a><br>
-<a href="/ShowFormDeveloper/0">Add Developer</a><br>
-<a href="/ShowFormTester/0">Add Tester</a><br>
+<a href="/ManBehaviour/0/0">Add Analyst</a><br>
+<a href="/ManBehaviour/0/1">Add Developer</a><br>
+<a href="/ManBehaviour/0/2">Add Tester</a><br>

@@ -56,7 +56,7 @@ def menu_item():
 <html>
 <head>
 <meta charset="utf-8">
-<title>Лабораторная работа №2 Бернштейн</title>
+<title>Лабораторная работа №2 Новикова</title>
 </head>
 <body>
 """+ menu_p 
