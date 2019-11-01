@@ -9,7 +9,7 @@ class Person:
         self.age = ''
         self.wexp = ''
         
-    def SetData(self):
+    """def SetData(self):
         self.id = request.form.get('id')
         self.name = request.form.get('name')
         self.surname = request.form.get('surname')
@@ -17,4 +17,5 @@ class Person:
         self.wexp = request.form.get('wexp')
 
     def Show(self, tpl):
-        return render_template(tpl)
+        return render_template(tpl, **self.__dict__)
+"""

@@ -24,6 +24,10 @@ def DeleteItem(id):
 def DeleteStaff():
 	return GetStaff.PrintHeader() + GetStaff.DeleteStaff()
 
+@app.route("/Edit/<int:id>")
+def Edit(id):
+	return GetStaff.PrintHeader() + GetStaff.Edit(id)
+
 @app.route("/Submenu/")
 def Submenu():
 	return render_template("submenu.tpl")

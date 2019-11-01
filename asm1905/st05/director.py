@@ -1,4 +1,5 @@
 from person import Person
+from dir_behavior import Dir_behavior
 from flask import request
 from flask import render_template
 
@@ -9,14 +10,10 @@ class Director(Person):
         self.clients = ''
 
     def SetData(self):
-        super().SetData()
-        self.clients = request.form.get('clients')
-
-    def Show(self):
-        return render_template("i_dir.tpl", **self.__dict__)
-
+        Dir_behavior().SetData(self)
+        #super().SetData()
+        #self.clients = request.form.get('clients')
     
-
-    
-
-    
+    def Show(self, tpl):
+        return Dir_behavior().Show(self, tpl)
+        
