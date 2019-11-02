@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+
+  <div class="header">
+
+    {% if data is defined %}
+    <h3>Редактирование записи</h3>
+  </div>
+  <form action="/edit" method="POST">
+    <input type="hidden" name="id" value="{{ id }}">
+    {% else %}
+    <h3>Добавление записи</h3>
+  </div>
+  <form action="/add" method="POST">
+    {% endif %}
+
+    <input type="hidden" name="type" value="{{ type }}">
+    <label for="brand">Бренд</label>
+    <input type="text" name="brand" value="{{ data.brand if data is defined else '' }}">
+    <label for="screen_size">Размер дисплея</label>
+    <input type="text" name="screen_size" value="{{ data.screen_size if data is defined else '' }}">
+    <label for="housing_type">Тип</label>
+    <input type="text" name="housing_type" value="{{ data.housing_type if data is defined else '' }}">
+
+    {% if type == 'smart' or data is defined and data.os != 'NoOS' %}
+    <label for="os">Операционная система</label>
+    <input type="text" name="os" value="{{ data.os if data is defined else '' }}">
+    <label for="ram">Оперативная память</label>
+    <input type="text" name="ram" value="{{ data.ram if data is defined else '' }}">
+    {% endif %}
+
+    {% if data is defined %}
+    <input class="button btn-green" type="submit" value="Сохранить">
+    {% else %}
+    <input class="button btn-green" type="submit" value="Добавить">
+    {% endif %}
+
+    <a href="/" class="button btn-red">Отмена</a>
+  </form>
+
+  {% endblock %}

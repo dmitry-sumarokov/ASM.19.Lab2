@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+      {% block content %}
+       <div class="header">
+      {% if mobile_list == [] %}
+         <h3>Список пуст.</h3>
+         {%else%}
+        <H3>Телефоны.</H3>
+      </div>
+        <table class="ctable">
+          <tr>
+            <th>Бренд</th><th>Размер дисплея</th><th>Тип</th><th>Операционная система</th><th>Ram</th>
+          </tr>
+          {% for item in mobile_list %}
+          <tr>
+            <td>{{ item.brand }}</td><td>{{ item.screen_size }}</td><td>{{ item.housing_type }}</td><td>{{ item.os }}</td><td>{{ item.ram }}</td>
+            <td class="ignore">
+              <div>
+                <div class="dropdown" style="float:right">
+                  <button class="button btn-yellow">Редактировать</button>
+                    <div class="dropdown-content">
+                      <a href="/edit?id={{ loop.index0 }}">Изменить</a> <a href="/delete?id={{ loop.index0 }}">Удалить</a>
+                    </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </table><br>
+      {% endif %}
+        <div class="buttons">
+            <div class="dropdown" style="float:left">
+                <button class="button btn-green">Добавить</button>
+                <div class="dropdown-content">
+                    <a href="/add?type=mobile">Мобильный телефон</a>
+                    <a href="/add?type=smart">Смартфон</a>
+                </div>
+            </div>
+            <a href="/clear" class="button btn-red">Очистить список</a>
+        </div>
+      {% endblock %}
