@@ -1,6 +1,6 @@
 ﻿import os
 import pickle
-from flask import render_template, request
+from flask import render_template, request, redirect
 
 from Employee import Employee
 
@@ -29,7 +29,7 @@ class ACS_SC_dep:
                      ('Add DB Dev', DB_Dev, DB_DevAction))
         try:
             self.load_from_file()
-        except Exception as e:
+        except:
             self.employees = []
 
     def Dep(self):
@@ -48,7 +48,6 @@ class ACS_SC_dep:
     def Get_Employee(self, id):
         if id < 0:
             emp = Employee(self.menu[-id-1][1], self.menu[-id-1][2])
-            self.employees.append(emp)
             return emp
         else:
             return self.employees[id]
@@ -65,11 +64,20 @@ class ACS_SC_dep:
         # return render_template("hire.tpl", **context)
 
     def Hire_Employee(self):
-        id = int(request.form.get('id', 0))
+        id = int(request.form.get('id', None))
 
         emp = self.Get_Employee(id)
         emp.alter_emp_params()
 
+        if id < 0:
+            self.employees.append(emp)
+            # return render_template("hire.tpl")
+
+        return self.Dep()
+
+
+    def Delete_Employee(self, id):
+        self.employees.pop(id)
         return self.Dep()
     # def main_menu(self):
     #     print("------------------------------")
@@ -149,16 +157,16 @@ class ACS_SC_dep:
     #         item.print_emp_params(i)
     #
     def save_to_file(self):
-        with open(os.path.join(os.path.abspath(__name__).replace('.st13.ACS_SC_dep', '/st13'), 'dep.dat'), 'wb') as f:
+        with open(os.path.join(os.path.abspath(__name__).replace('\Dep', '\\'), 'dep.dat'), 'wb') as f:
             pickle.dump(self.employees, f)
-        f.close()
-        print('Saved successfully')
+        # f.close()
+        # print('Saved successfully')
 
     def load_from_file(self):
-        with open(os.path.join(os.path.abspath(__name__).replace('.st13.ACS_SC_dep', '/st13'), 'dep.dat'), 'rb') as f:
+        with open(os.path.join(os.path.abspath(__name__).replace('\Dep', '\\'), 'dep.dat'), 'rb') as f:
             self.employees = pickle.load(f)
-        f.close()
-        print('Load successfully')
+        # f.close()
+        # print('Load successfully')
 
     # def f(self):
     # 	print("asm1905.st13.group.f()")

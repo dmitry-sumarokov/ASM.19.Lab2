@@ -13,7 +13,7 @@ class AnalystAction:
             analyst.avg_calls_per_day = 0
         elif hire_alter == 1:
             analyst.avg_calls_per_day = int(request.form.get('calls'))
-        return analyst.avg_calls_per_day
+        # return analyst.avg_calls_per_day
 
 
         # if hire_alter == 0:

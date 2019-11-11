@@ -1,3 +1,4 @@
+
 from ACS_SC_dep import ACS_SC_dep
 from flask import Flask
 from flask import g
@@ -22,6 +23,11 @@ def index():
 def EmpParamsForm(id):
     return GetDep().Head() + GetDep().Alter_Employee(int(id)) + GetDep().Body()
 
+@app.route("/DeleteEmployee/<id>")
+def DeleteEmployee(id):
+    return GetDep().Head() + GetDep().Delete_Employee(int(id)) + GetDep().Body()
+
+
 
 # @app.route("/DeleteItem/<int:id>")
 # def DeleteItem(id):
@@ -38,11 +44,18 @@ def EmpParamsForm(id):
 @app.route("/HireEmployee", methods=['POST'])
 def HireEmployee():
     return GetDep().Head() + GetDep().Hire_Employee() + GetDep().Body()
-#
-#
+
+@app.route("/Save")
+def Save():
+    return GetDep().save_to_file()
+
 # @app.teardown_appcontext
 # def finish(ctx):
-#         GetGroup().save_to_file()
+#         GetDep().save_to_file()
+
+# @app.teardown_appcontext
+# def Save():
+#     GetDep().save_to_file()
 
 if __name__ == "__main__":
     app.run(debug=True)

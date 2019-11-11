@@ -1,5 +1,5 @@
 <form action='/HireEmployee' method=POST>
-<input type=hidden name=id value={{id}}>
+<input type=hidden name=id value={{id}}><br>
 Nickname: <input type=text name=nickname value="{{nickname}}"><br>
 Experience: <input type=number name=exp value="{{exp}}"><br>
 Sex: <input type=text name=sex value="{{sex}}"><br>
