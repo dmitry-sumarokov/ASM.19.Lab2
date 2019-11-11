@@ -7,6 +7,7 @@ class Analyst:
         self.avg_calls_per_day = 0
         pass
 
+
     # def __init__(self):
     #     super().__init__()
     #     self.hire_employee()

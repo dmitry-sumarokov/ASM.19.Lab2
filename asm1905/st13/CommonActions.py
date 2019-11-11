@@ -1,60 +1,21 @@
 # from .Employee import Employee
+from random import randint
+from flask import render_template, request
 
 
 class CommonActions:
     def __init__(self):
         pass
 
-    def hire_alter_employee(employee, hire_alter):
-        if hire_alter == 0:
-            print('Enter employee\'s nickname: ')
-        elif hire_alter == 1:
-            print('Enter some changes or press \'ENTER\' to skip filling in the field')
-            print('Enter employee\'s nickname: ')
+    def hire_alter_employee(employee):
+        employee.nickname = request.form.get('nickname')
+        employee.exp = request.form.get('exp')
+        employee.sex = request.form.get('sex')
+        employee.age = int(request.form.get('age'))
 
-        while True:
-            nickname = input()
-            if nickname:
-                employee.nickname = nickname
-                break
-            else:
-                print('Enter something!')
-                pass
-
-        print('Enter employee\'s working experience: ')
-
-        while True:
-            exp = input()
-            if exp.isdigit():
-                employee.exp = int(exp)
-                break
-            else:
-                print('Enter a NUMBER!')
-                pass
-
-        print('Enter employee\'s sex (M - man or F - female): ')
-        while True:
-            sex = input().upper()
-            if sex in ('M', 'F'):
-                employee.sex = sex
-                break
-            else:
-                print('Enter M or F!')
-                pass
-
-        print('Enter employee\'s age: ')
-        while True:
-            age = input()
-            if age.isdigit():
-                employee.age = int(age)
-                break
-            else:
-                print('Enter a NUMBER!')
-                pass
-
-    def print_employees(employee, number):
-        print('%s.  Nickname - 			 %s\n    Working experience - %s\n    Sex - 				 %s\n    Age - 	'
-              '			 %s' % (number, employee.nickname, employee.exp, employee.sex, employee.age))
+    def print_employees(employee, id):
+        context = {'nickname': employee.nickname, 'exp': employee.exp, 'sex': employee.sex, 'age': employee.age, 'id': id}
+        return context
 
     def print_brief(employee, number):
         print('%s.  Nickname - %s\n'

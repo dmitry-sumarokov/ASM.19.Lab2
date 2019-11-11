@@ -1,4 +1,5 @@
 from abc import ABC
+from flask import render_template, request
 
 
 class Employee(ABC):
@@ -15,21 +16,40 @@ class Employee(ABC):
         self.action.hire_alter_employee(self.employee, 0)
         pass
 
-    def print_emp_params(self, number):
-        self.action.print_employees(self.employee, number)
-        pass
+    def print_emp_params(self, id, act):
+        # context = [id,'nickname', 'exp', 'sex', 'age']
+        # context['id'] = id
+        # context['nickname'] = self.nickname
+        # context['exp'] = self.exp
+        # context['sex'] = self.sex
+        # context['age'] = self.age
+        # return render_template(tpl, **context)
+        context = {'nickname': self.nickname, 'exp': self.exp, 'sex': self.sex, 'age': self.age, 'id': id}
+        tpl, context = self.action.print_employees(self.employee, context, act)
+        return render_template(tpl, **context)
+        # render_template("hire.tpl", **context)
+
+
 
     def print_emp_brief(self, number):
+
         self.action.print_brief(self.employee, number)
         pass
 
     def alter_emp_params(self):
+        self.nickname = request.form.get('nickname')
+        self.exp = int(request.form.get('exp'))
+        self.sex = request.form.get('sex')
+        self.age = int(request.form.get('age'))
         self.action.hire_alter_employee(self.employee, 1)
-        pass
 
     def emp_special_action(self):
         self.action.print_special_action(self.employee)
         pass
+
+    def dict(self, id):
+        context = {'nickname': self.nickname, 'exp': self.exp, 'sex': self.sex, 'age': self.age, 'id': id}
+        return context
 
     # def hire_employee(self):
     #     print('Enter employee\'s nickname: ')

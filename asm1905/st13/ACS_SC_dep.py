@@ -9,26 +9,24 @@ from CommonActions import CommonActions
 from Analyst import Analyst
 from AnalystAction import AnalystAction
 
-from DevOps import DevOps
-from DevOpsAction import DevOpsAction
+# from DevOps import DevOps
+# from DevOpsAction import DevOpsAction
 
 from DB_Dev import DB_Dev
 from DB_DevAction import DB_DevAction
 
-from Backend_Dev import Backend_Dev
-from Backend_DevAction import Backend_DevAction
-
-from Frontend_Dev import Frontend_Dev
-from Frontend_DevAction import Frontend_DevAction
+# from Backend_Dev import Backend_Dev
+# from Backend_DevAction import Backend_DevAction
+#
+# from Frontend_Dev import Frontend_Dev
+# from Frontend_DevAction import Frontend_DevAction
 
 
 class ACS_SC_dep:
     def __init__(self):
-        self.menu = ('Add Analyst',
-                     'Add DevOps',
-                     'Add BD Dev',
-                     'Add Backend Dev',
-                     'Add Frontend Dev')
+        # self.employees = []
+        self.menu = (('Add Analyst', Analyst, AnalystAction),
+                     ('Add DB Dev', DB_Dev, DB_DevAction))
         try:
             self.load_from_file()
         except Exception as e:
@@ -36,9 +34,9 @@ class ACS_SC_dep:
 
     def Dep(self):
         dep = ''
-        for i, item in enumerate(self.employees):
-            dep += item.do_print(i, "employee.tpl")
-        dep += render_template("hire.tpl")
+        for i, emp in enumerate(self.employees):
+            dep += emp.print_emp_params(i, 1)
+        dep += render_template("actions.tpl")
         return dep
 
     def Head(self):
@@ -46,6 +44,33 @@ class ACS_SC_dep:
 
     def Body(self):
         return render_template("body.tpl")
+
+    def Get_Employee(self, id):
+        if id < 0:
+            emp = Employee(self.menu[-id-1][1], self.menu[-id-1][2])
+            self.employees.append(emp)
+            return emp
+        else:
+            return self.employees[id]
+
+    def Alter_Employee(self, id):
+        # return render_template("hire.tpl")
+        # return id
+        # return emp.nickname
+        # return render_template("hire.tpl", **emp.dict(id))
+        emp = self.Get_Employee(id)
+        return emp.print_emp_params(id, 0)
+        # render_template("hire.tpl", **emp.print_emp_params(int(id)))
+        # context = {'nickname': 'self.nickname', 'exp': 0, 'sex': 'self.sex', 'age': 18, 'id': id}
+        # return render_template("hire.tpl", **context)
+
+    def Hire_Employee(self):
+        id = int(request.form.get('id', 0))
+
+        emp = self.Get_Employee(id)
+        emp.alter_emp_params()
+
+        return self.Dep()
     # def main_menu(self):
     #     print("------------------------------")
     #     for i, item in enumerate(self.menu):

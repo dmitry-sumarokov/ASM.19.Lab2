@@ -18,9 +18,10 @@ def GetDep():
 def index():
     return GetDep().Head() + GetDep().Dep() + GetDep().Body()
 
-@app.route("/DisplayDepForm/<id>")
-def DisplayDepForm(id):
-    return GetDep().Head() + GetDep().Show_Employees(int(id)) + GetDep().Body()
+@app.route("/EmpParamsForm/<id>")
+def EmpParamsForm(id):
+    return GetDep().Head() + GetDep().Alter_Employee(int(id)) + GetDep().Body()
+
 
 # @app.route("/DeleteItem/<int:id>")
 # def DeleteItem(id):
@@ -34,9 +35,9 @@ def DisplayDepForm(id):
 # def DeleteGroup():
 # 	return GetGroup().PrintHeader() + GetGroup().clear_worker() + GetGroup().PrintFooter()
 #
-# @app.route("/AddItem", methods=['POST'])
-# def AddItem():
-# 	return GetGroup().PrintHeader() + GetGroup().add_worker() + GetGroup().PrintFooter()
+@app.route("/HireEmployee", methods=['POST'])
+def HireEmployee():
+    return GetDep().Head() + GetDep().Hire_Employee() + GetDep().Body()
 #
 #
 # @app.teardown_appcontext
