@@ -49,9 +49,9 @@ def HireEmployee():
 def Save():
     return GetDep().save_to_file()
 
-# @app.teardown_appcontext
-# def finish(ctx):
-#         GetDep().save_to_file()
+@app.teardown_appcontext
+def finish(ctx):
+     GetDep().save_to_file()
 
 # @app.teardown_appcontext
 # def Save():

@@ -29,7 +29,7 @@ class ACS_SC_dep:
                      ('Add DB Dev', DB_Dev, DB_DevAction))
         try:
             self.load_from_file()
-        except:
+        except Exception as e:
             self.employees = []
 
     def Dep(self):
@@ -157,15 +157,15 @@ class ACS_SC_dep:
     #         item.print_emp_params(i)
     #
     def save_to_file(self):
-        with open(os.path.join(os.path.abspath(__name__).replace('\Dep', '\\'), 'dep.dat'), 'wb') as f:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'dep.dat'), 'wb') as f:
             pickle.dump(self.employees, f)
-        # f.close()
+        f.close()
         # print('Saved successfully')
 
     def load_from_file(self):
-        with open(os.path.join(os.path.abspath(__name__).replace('\Dep', '\\'), 'dep.dat'), 'rb') as f:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'dep.dat'), 'rb') as f:
             self.employees = pickle.load(f)
-        # f.close()
+        f.close()
         # print('Load successfully')
 
     # def f(self):

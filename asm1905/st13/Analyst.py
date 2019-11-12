@@ -5,7 +5,6 @@ from random import randint
 class Analyst:
     def __init__(self):
         self.avg_calls_per_day = 0
-        pass
 
 
     # def __init__(self):
