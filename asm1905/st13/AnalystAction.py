@@ -12,8 +12,8 @@ class AnalystAction:
         if hire_alter == 0:
             analyst.avg_calls_per_day = 0
         elif hire_alter == 1:
-            analyst.avg_calls_per_day = int(request.form.get('calls'))
-        # return analyst.avg_calls_per_day
+            analyst.avg_calls_per_day = int(request.form.get('unique'))
+        return analyst.avg_calls_per_day
 
 
         # if hire_alter == 0:
@@ -29,14 +29,14 @@ class AnalystAction:
         #         print('Enter a NUMBER!!!')
         #         pass
 
-    def print_employees(analyst, context, act):
+    def print_employees(analyst, act):
         # context = CommonActions.print_employees(analyst, id)
 
-        context['calls'] =  analyst.avg_calls_per_day
+        # context['calls'] = analyst.avg_calls_per_day
         if act == 0:
-            return "analyst_hire.tpl", context
+            return "analyst_hire.tpl"
         elif act == 1:
-            return "analyst_show.tpl", context
+            return "analyst_show.tpl"
         # print (context)
         # analyst.avg_calls_per_day = 0
         # calls = {'calls': analyst.avg_calls_per_day}

@@ -10,11 +10,10 @@ class Employee(ABC):
         self.exp = 0
         self.sex = ''
         self.age = 0
-        self.enter_emp_params()
+        self.unique = self.enter_emp_params()
 
     def enter_emp_params(self):
         self.action.hire_alter_employee(self.employee, 0)
-        pass
 
     def print_emp_params(self, id, act):
         # context = [id,'nickname', 'exp', 'sex', 'age']
@@ -24,8 +23,8 @@ class Employee(ABC):
         # context['sex'] = self.sex
         # context['age'] = self.age
         # return render_template(tpl, **context)
-        context = {'nickname': self.nickname, 'exp': self.exp, 'sex': self.sex, 'age': self.age, 'id': id}
-        tpl, context = self.action.print_employees(self.employee, context, act)
+        context = {'nickname': self.nickname, 'exp': self.exp, 'sex': self.sex, 'age': self.age, 'unique': self.unique, 'id': id}
+        tpl = self.action.print_employees(self.employee, act)
         return render_template(tpl, **context)
         # render_template("hire.tpl", **context)
 
@@ -41,7 +40,7 @@ class Employee(ABC):
         self.exp = int(request.form.get('exp'))
         self.sex = request.form.get('sex')
         self.age = int(request.form.get('age'))
-        self.action.hire_alter_employee(self.employee, 1)
+        self.unique = self.action.hire_alter_employee(self.employee, 1)
 
     def emp_special_action(self):
         self.action.print_special_action(self.employee)
