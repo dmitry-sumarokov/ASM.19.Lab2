@@ -44,17 +44,19 @@ class AnalystAction:
         # return emp
         # return emp
 
-    def print_special_action(analyst):
+    def print_special_action(analyst, unique = None):
+        analyst.avg_calls_per_day = unique
         rd = randint(0, 5)
+        msg = ''
         try:
             if (analyst.avg_calls_per_day / rd) % 2 == 0:
-                msg = 'What are you doing???'
+                msg += 'What are you doing???'
             else:
-                msg = 'Are you kidding me??? What does it mean?'
+                msg += 'Are you kidding me??? What does it mean?'
         except Exception as e:
-            msg = 'Something went wrong! f@!%'
+            msg += 'Something went wrong! f@!%'
             pass
-        print(msg)
+        return (msg)
 
     def print_brief(analyst, number):
         CommonActions.print_brief(analyst, number)

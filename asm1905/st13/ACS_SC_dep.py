@@ -79,6 +79,17 @@ class ACS_SC_dep:
     def Delete_Employee(self, id):
         self.employees.pop(id)
         return self.Dep()
+
+    def Special_Action(self, id):
+        spl = 'ID = ' + str(id) + '<br>'
+        spl += self.employees[int(id)].emp_special_action()
+        spl += self.Dep()
+
+        return spl
+
+    def Close_Dep(self):
+        self.employees.clear()
+        return self.Dep()
     # def main_menu(self):
     #     print("------------------------------")
     #     for i, item in enumerate(self.menu):

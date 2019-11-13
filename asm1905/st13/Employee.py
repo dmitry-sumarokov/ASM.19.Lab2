@@ -31,7 +31,6 @@ class Employee(ABC):
 
 
     def print_emp_brief(self, number):
-
         self.action.print_brief(self.employee, number)
         pass
 
@@ -43,8 +42,7 @@ class Employee(ABC):
         self.unique = self.action.hire_alter_employee(self.employee, 1)
 
     def emp_special_action(self):
-        self.action.print_special_action(self.employee)
-        pass
+        return self.action.print_special_action(self.employee, self.unique)
 
     def dict(self, id):
         context = {'nickname': self.nickname, 'exp': self.exp, 'sex': self.sex, 'age': self.age, 'id': id}
