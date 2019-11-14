@@ -1,0 +1,29 @@
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Name:</th>
+            <th>Age:</th>
+            <th>Special:</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for employee in employees %}
+        <tr>
+            <td>aa {{employee.name}}</td>
+            <td>aa {{employee.age}}</td>
+            <td>aa {{employee.special}}</td>
+            <td>
+                <a href="/team/edit/{{loop.index0}}">
+                    <i class="material-icons">edit</i>
+                </a>
+                <a href="/team/remove/{{loop.index0}}">
+                    <i class="material-icons">delete</i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
