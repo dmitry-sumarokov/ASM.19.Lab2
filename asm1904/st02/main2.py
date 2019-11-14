@@ -4,6 +4,7 @@ else:
     from .group2 import Group
 
 from flask import Flask
+
 from flask import g
 app = Flask(__name__)
 ctx=app.app_context()
