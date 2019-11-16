@@ -3,8 +3,6 @@ import os
 from human import Student, Starosta, Proforg
 from flask import render_template
 from flask import request
-from pprint import pprint
-import time
 
 class group:
     def __init__(self):
