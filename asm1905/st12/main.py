@@ -11,8 +11,37 @@ def GetGroup():
 
 @app.route("/")
 def index():
-	return GetGroup().Header() + GetGroup().show_list() + GetGroup().Footer()
+	return GetGroup().show_list()
 
+@app.route("/forma/<int:id>/<int:type>")
+def call_form(id, type):
+	return GetGroup().call_form(id, type)
+
+@app.route("/change/<int:id>/<int:type>")
+def change(id, type):
+	return GetGroup().change(id, type)
+
+@app.route("/human", methods=['POST'])
+def add_human():
+	return GetGroup().add_human()
+
+@app.route("/delete_card/<int:id>")
+def delete_card(id):
+	return GetGroup().delete_card(id)
+
+@app.route("/action/<int:id>")
+def action(id):
+	return GetGroup().action(id)
+
+@app.teardown_appcontext
+def finish(ctx):
+    GetGroup().write_File()
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+""""
 @app.route("/update/<int:id>")
 def update_form(id):
 	return GetGroup().Header() + GetGroup().update_form(id) + GetGroup().Footer()
@@ -28,32 +57,4 @@ def newHuman(id):
 @app.route("/New", methods=['POST'])  
 def add_newHuman():
 	return GetGroup().Header() + GetGroup().add_newHuman() + GetGroup().Footer()
-
-@app.route("/delete_card/<int:id>")
-def delete_card(id):
-	return GetGroup().delete_card(id) + GetGroup().Footer()
-
-@app.route("/action/<int:id>")
-def action(id):
-	return GetGroup().Header() + GetGroup().action(id) + GetGroup().Footer()
-
-@app.teardown_appcontext
-def finish(ctx):
-    GetGroup().write_File()
-
-if __name__ == '__main__':
-    app.run(debug=True)
-    
-    
-"""Menu = [
-    ["0 - Выход", None],
-    ["1 - Добавить объект типа 'студент'", gr.addStudent],
-    ["2 - Добавить объект типа 'староста'", gr.addStarosta],
-    ["3 - Добавить объект типа 'профорг'", gr.addProforg],
-    ["4 - Вывести список учеников", gr.show_list],
-    ["5 - Изменить данные ученика", gr.change],
-    ["6 - Удалить ученика из списка группы", gr.delete_card],
-    ["7 - Сохранить список группы в файл", gr.write_file],
-    ["8 - Считать список группы из файла", gr.read_file]
-]
 """
