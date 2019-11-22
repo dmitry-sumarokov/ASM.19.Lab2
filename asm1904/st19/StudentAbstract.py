@@ -33,9 +33,6 @@ class StudentAbs(ABC):
     def Show(self):
         return render_template("student.tpl", **self.__dict__)
 
-    # def Show(self, h):
-    #     return render_template("student.tpl", **h.__dict__)
-
     @abstractmethod
     def do_special(self):
         pass
@@ -51,7 +48,7 @@ class Student_behavior(ABC):
 
 class Starosta_behavior(Student_behavior):
     def __init__(self):
-        super(Student_behavior, self).__init__()
+        super(Starosta_behavior, self).__init__()
         self.student_kind = 'я староста'
 
     def do_magic(self):
@@ -69,7 +66,7 @@ class Student_behavior(Student_behavior):
 
 class Proforg_behavior(Student_behavior):
     def __init__(self):
-        super(Student_behavior, self).__init__()
+        super(Proforg_behavior, self).__init__()
         self.student_kind = 'я профорг'
 
     def do_magic(self):
@@ -79,7 +76,7 @@ class Proforg_behavior(Student_behavior):
 # Человеееееечки
 class Starosta(StudentAbs):
     def __init__(self):
-        super(Starosta, self).__init__()
+        super(StudentAbs, self).__init__()
         self.behavior = Starosta_behavior()
         pass
 
@@ -89,7 +86,7 @@ class Starosta(StudentAbs):
 
 class Student(StudentAbs):
     def __init__(self):
-        super(Student, self).__init__()
+        super(StudentAbs, self).__init__()
         self.behavior = Student_behavior()
         pass
 
@@ -99,7 +96,7 @@ class Student(StudentAbs):
 
 class Proforg(StudentAbs):
     def __init__(self):
-        super(Proforg, self).__init__()
+        super(StudentAbs, self).__init__()
         self.behavior = Proforg_behavior()
         pass
 
