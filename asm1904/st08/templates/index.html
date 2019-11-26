@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if tea_list %}
+  <table border="1px solid #000000">
+    <tr>
+      <th width="5%">ID</th><th>Тип</th><th width="25%">Форма</th><th width="10%">Происхождение</th><th width="15%">Действие</th>
+    </tr>
+    {% for item in tea_list %}
+    <tr>
+      <td>{{loop.index}}</td><td>{{item.type}}</td><td>{{item.form}}</td><td>{{item.var}}</td>
+      <td>
+        <select onchange="document.location=this.options[this.selectedIndex].value">
+          <option selected disabled hidden>Действие</option>
+          <option value="/delete?id={{loop.index}}">Удалить</option>
+          <option value="/edit?id={{loop.index}}">Редактировать</option>
+          <option value="/behaviour?id={{loop.index}}">Уникальная информация</option>
+        </select>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+
+  <div>
+    <p>
+      <a href="/new?var=0">Китайский чай</a><br>
+      <a href="/new?var=1">Индийский чай</a><br>
+      <a href="/clear">Очистить список</a>
+    </p>
+  </div>
+
+{% endblock %}
