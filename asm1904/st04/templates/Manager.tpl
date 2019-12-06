@@ -1,4 +1,4 @@
-Manager: <br>
+Менеджер: <br>
 ID: {{id}}<br>
 Fname: {{Fname}}<br>
 Sname: {{Sname}}<br>
