@@ -1,5 +1,11 @@
-<br><hr><br>
+{% extends 'base.html' %}
 
-<h3 align=center><a href="/new_human/0">Add Student</a></h3><br>
-<h3 align=center><a href="/new_human/1">Add Starosta</a></h3><br>
-<h3 align=center><a href="/new_human/2">Add Proforg</a></h3><br>
+  {% block content %}
+
+<br><hr>
+<h2 align=center>Options:</h2>
+<h3 align=center><a href="/forma/0/0">Add Student</a></h3>
+<h3 align=center><a href="/forma/0/1">Add Starosta</a></h3>
+<h3 align=center><a href="/forma/0/2">Add Proforg</a></h3>
+
+  {% endblock %}

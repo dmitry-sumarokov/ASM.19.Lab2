@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+
+  <div>
+    {% if data is defined %}
+    <h3>Редактирование записи</h3>
+  </div>
+  <form action="/edit" method="POST">
+    <input type="hidden" name="id" value="{{ id }}">
+    {% else %}
+    <h3>Добавление записи</h3>
+  </div>
+  <form action="/new" method="POST">
+    {% endif %}
+    <input type="hidden" name="var" value="{{ var }}">
+    <p><label>Тип</label><input type="text" name="type" value="{{ data.type if data is defined else '' }}"><br>
+    <label>Формат</label><input type="text" name="form" value="{{ data.form if data is defined else '' }}"></p>
+
+    <p>
+    <input type="submit" value="Ok">
+    <a href="/">Отмена</a>
+    </p>
+  </form>
+
+  {% endblock %}

@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+  {% block content %}
+
 <br><hr><br>
 
 ID: {{id}}<br>
@@ -6,8 +10,8 @@ Lastname: {{lastname}}<br>
 Age: {{age}}<br>
 Student number: {{number_stud}}<br>
 
-<br><hr><br>
-
 <a href="/delete_card/{{id}}">Delete</a><br>
-<a href="/update/{{id}}">Change the data</a><br>
+<a href="/change/{{id}}/{{type}}">Change the data</a><br>
 <a href="/action/{{id}}">Trigger a special action</a><br>
+
+  {% endblock %}
