@@ -7,15 +7,15 @@ class Creative():
 
 	def __init__(self):
 		self.id = 0
-		self.Name = ''
-		self.Surname = ''
-		self.Function = ''
+		self.name = ''
+		self.surname = ''
+		self.function = ''
 
 	def SetData(self):
 		self.id = request.form.get('id')
-		self.Name = request.form.get('Name')
-		self.Surname = request.form.get('Surname')
-		self.Function = request.form.get('Function')
+		self.name = request.form.get('name')
+		self.surname = request.form.get('surname')
+		self.function = request.form.get('function')
 
 	def ShowForm(self):
 		return self.IO_behaviour.ShowForm(self)
