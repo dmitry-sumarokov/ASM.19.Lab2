@@ -1,4 +1,4 @@
-Лидер: <br>
+Leader: <br>
 ID: {{id}}<br>
 Fname: {{Fname}}<br>
 Sname: {{Sname}}<br>

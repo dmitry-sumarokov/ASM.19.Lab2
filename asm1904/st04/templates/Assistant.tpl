@@ -1,4 +1,4 @@
-Ассистент: <br>
+Assistant: <br>
 ID: {{id}}<br>
 Fname: {{Fname}}<br>
 Sname: {{Sname}}<br>
