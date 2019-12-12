@@ -4,7 +4,6 @@
 class DB_Dev:
     def __init__(self):
         self.coffee = 0
-        pass
 
 
     # def enter_emp_params(self):

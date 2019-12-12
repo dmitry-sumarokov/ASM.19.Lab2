@@ -1,9 +1,10 @@
-<form action='/HireEmployee' method=POST>
-<input type=hidden name=id value={{id}}>
-Nickname: <input type=text name=nickname value="{{nickname}}"><br>
-Experience: <input type=number name=exp value="{{exp}}"><br>
-Sex: <input type=text name=sex value="{{sex}}"><br>
-Age: <input type=number name=age value="{{age}}"><br>
-Coffee's mugs per day: {{coffee}}<br>
-<input type=submit value=" Hire "><br>
-</form>
+<br>*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*<br>
+ID: {{id}}<br>
+Nickname: {{nickname}}<br>
+Experience: {{exp}}<br>
+Sex: {{sex}}<br>
+Age: {{age}}<br>
+Coffee mugs: {{unique}}<br>
+<a href="/DeleteEmployee/{{id}}">Fire DB Developer</a><br>
+<a href="/EmpParamsForm/{{id}}">Alter DB Developer params</a><br>
+<a href="/SpecialAction/{{id}}">Special action</a><br>

@@ -27,27 +27,21 @@ def EmpParamsForm(id):
 def DeleteEmployee(id):
     return GetDep().Head() + GetDep().Delete_Employee(int(id)) + GetDep().Body()
 
+@app.route("/SpecialAction/<int:id>")
+def Special_Action(id):
+    return GetDep().Head() + GetDep().Special_Action(id) + GetDep().Body()
 
+@app.route("/CloseDep")
+def CloseDep():
+    return GetDep().Head() + GetDep().Close_Dep() + GetDep().Body()
 
-# @app.route("/DeleteItem/<int:id>")
-# def DeleteItem(id):
-# 	return GetGroup().PrintHeader() + GetGroup().remove_worker(id) + GetGroup().PrintFooter()
-#
-# @app.route("/ShowMagicForm/<int:id>")
-# def ShowMagicForm(id):
-# 	return GetGroup().PrintHeader() + GetGroup().do_magic(id) + GetGroup().PrintFooter()
-#
-# @app.route("/DeleteGroup")
-# def DeleteGroup():
-# 	return GetGroup().PrintHeader() + GetGroup().clear_worker() + GetGroup().PrintFooter()
-#
 @app.route("/HireEmployee", methods=['POST'])
 def HireEmployee():
     return GetDep().Head() + GetDep().Hire_Employee() + GetDep().Body()
 
-@app.route("/Save")
-def Save():
-    return GetDep().save_to_file()
+# @app.route("/Save")
+# def Save():
+#     return GetDep().save_to_file()
 
 @app.teardown_appcontext
 def finish(ctx):
