@@ -1,31 +1,19 @@
-from flask import Flask, url_for, render_template
-import cgi
-import cgitb
-from strategy.menuItems import ADDITION_MENU
+from flask import Flask, url_for, render_template, request
+from .strategy.menuItems import ADDITION_MENU
+from .strategy.main import scrumTeam
 
-cgitb.enable()
 app = Flask(__name__)
-
-if __name__ == '__main__':
-    from strategy.main import scrumTeam
-else:
-    from .strategy.main import scrumTeam
+myG = scrumTeam()
 
 
 @app.route("/")
 def main():
-    scrumTeam.load_from_file()
     employees_num = enumerate(scrumTeam.employees)
     return render_template('index.html', menu=ADDITION_MENU, employees=employees_num)
 
 
-@app.route('/team/add', defaults={'number': None})
 @app.route('/team/add/<int:number>', methods=['GET', 'POST'])
 def add_student(number):
-    form = cgi.FieldStorage()
-    text1 = form.getfirst("TEXT_1", "не задано")
-    text2 = form.getfirst("TEXT_2", "не задано")
-
     if number is None:
         return render_template('add.html')
     else:
