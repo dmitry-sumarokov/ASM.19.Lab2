@@ -1,10 +1,11 @@
-﻿import pickle
-import os.path
+﻿import os.path
+import pickle
+
+from colorama import Fore
+
+from .commonFunctions import return_number
 from .employee import Employee
 from .menuItems import ADDITION_MENU
-from .commonFunctions import get_menu_input
-from colorama import Fore
-from .commonFunctions import return_number
 
 
 class ScrumTeam:
@@ -13,9 +14,11 @@ class ScrumTeam:
     def __init__(self):
         self.employees = []
 
-    def add_employee(self):
-        e = ADDITION_MENU[int(get_menu_input(ADDITION_MENU))]
-        self.employees.append(Employee(e[1], e[2]))
+    @staticmethod
+    def get_fields(num) -> list:
+        e = ADDITION_MENU[num]
+        employee = Employee(e[1], e[2])
+        return employee.fields_list()
 
     def edit_employee(self):
         self.employees[return_number()].edit()

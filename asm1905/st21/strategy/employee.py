@@ -1,6 +1,8 @@
 from abc import ABC
-from .commonFunctions import return_number
+
 from colorama import Fore
+
+from .commonFunctions import return_number
 
 
 class Employee(ABC):
@@ -8,10 +10,9 @@ class Employee(ABC):
     def __init__(self, e_type, behavior):
         self._employee = e_type
         self._behavior = behavior
-        self._input_data()
 
-    def _input_data(self):
-        self._behavior.addition(self._employee)
+    def fields_list(self) -> list:
+        return self._behavior.get_full_fields()
 
     def print_data(self):
         self._behavior.show(self._employee)
@@ -25,9 +26,8 @@ class Employee(ABC):
 
 class Behavior:
     @staticmethod
-    def input_data(employee):
-        employee.name = input('Name: ')
-        employee.age = return_number('Age: ')
+    def get_basic_fields() -> list:
+        return ['Name', 'Age']
 
     @staticmethod
     def show_data(employee):

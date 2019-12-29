@@ -1,31 +1,42 @@
-from flask import Flask, url_for, render_template, request
-from .strategy.menuItems import ADDITION_MENU
-from .strategy.main import scrumTeam
+from flask import Flask, render_template, request
+from flask_wtf import FlaskForm
+from strategy.main import scrumTeam
+from strategy.menuItems import ADDITION_MENU, MENU
+from wtforms import StringField
+from wtforms.validators import DataRequired
 
 app = Flask(__name__)
-myG = scrumTeam()
+myG = scrumTeam
 
 
-myG=scrumTeam
+def render_header():
+    return render_template('boilerplate.html')
 
-@app.route("/")
+
+class AdditionForm(FlaskForm):
+    name = StringField('name', validators=[DataRequired()])
+
+
+@app.route('/')
 def main():
     employees_num = enumerate(scrumTeam.employees)
-    return render_template('index.html', menu=ADDITION_MENU, employees=employees_num)
+    return render_header() + render_template('index.html', length=len(scrumTeam.employees), menu=MENU,
+                                             employees=employees_num)
 
 
-@app.route('/team/add/<int:number>', methods=['GET', 'POST'])
+@app.route('/add/', defaults={'number': None})
+@app.route('/add/<int:number>', methods=['GET', 'POST'])
 def add_student(number):
     if number is None:
-        return render_template('add.html')
+        return render_header() + render_template('addition.html', menu=ADDITION_MENU)
+    if request.method == 'POST':
+        data = request.form
+        myG.add_student(number, data=data, type_context='web')
+        return render_header() + render_template('/')
     else:
-        templ_name = ['student', 'starosta', 'proforg']
-        return render_template('addition.html', number=number)
-
-    # if request.method == 'POST':
-    #     data = request.form
-    #     myG.add_student(number, data=data, type_context='web')
-    #     return render_template("menu.html")
+        form = AdditionForm()
+        return render_header() + render_template('addition.html', form=form, number=number,
+                                                 fields=scrumTeam.get_fields(number))
 
 
 @app.route('/team/edit', defaults={'number': None})
@@ -34,7 +45,7 @@ def change_student(number):
     if request.method == 'POST':
         data = request.form
         myG.change_student(number, data=data)
-        return render_template("menu.html")
+        return render_template('menu.html')
     if number is None:
         return render_template('edit.html', length=myG.amount_students)
     else:
@@ -80,5 +91,5 @@ def load_from_file():
     return render_template('menu.html')
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)

@@ -1,5 +1,5 @@
-from .employee import Behavior
 from .commonFunctions import return_number
+from .employee import Behavior
 
 
 class ScrumMaster:
@@ -11,9 +11,10 @@ class ScrumMaster:
 
 class ScrumMasterBehavior:
     @staticmethod
-    def addition(employee):
-        Behavior.input_data(employee)
-        employee.projects = return_number('Projects: ')
+    def get_full_fields() -> list:
+        temp = Behavior.get_basic_fields()
+        temp.append('Projects')
+        return temp
 
     @staticmethod
     def show(employee):

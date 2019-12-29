@@ -1,5 +1,5 @@
-from .employee import Behavior
 from .commonFunctions import return_number
+from .employee import Behavior
 
 
 class ProductOwner:
@@ -11,9 +11,10 @@ class ProductOwner:
 
 class ProductOwnerBehavior:
     @staticmethod
-    def addition(employee):
-        Behavior.input_data(employee)
-        employee.payment = return_number('Payment (EUR): ')
+    def get_full_fields() -> list:
+        temp = Behavior.get_basic_fields()
+        temp.append('Payment (EUR)')
+        return temp
 
     @staticmethod
     def show(employee):

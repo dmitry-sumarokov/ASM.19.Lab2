@@ -1,5 +1,5 @@
-from .employee import Behavior
 from .commonFunctions import return_number
+from .employee import Behavior
 
 
 class Developer:
@@ -11,9 +11,10 @@ class Developer:
 
 class DeveloperBehavior:
     @staticmethod
-    def addition(employee):
-        Behavior.input_data(employee)
-        employee.experience = return_number('Experience (years): ')
+    def get_full_fields() -> list:
+        temp = Behavior.get_basic_fields()
+        temp.append('Experience (years)')
+        return temp
 
     @staticmethod
     def show(employee):
