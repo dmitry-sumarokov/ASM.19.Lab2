@@ -6,6 +6,8 @@ app = Flask(__name__)
 myG = scrumTeam()
 
 
+myG=scrumTeam
+
 @app.route("/")
 def main():
     employees_num = enumerate(scrumTeam.employees)
