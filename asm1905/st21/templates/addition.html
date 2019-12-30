@@ -6,7 +6,7 @@
                 <th>Menu items:</th>
             </tr>
             </thead>
-
+            {% if menu %}
             <tbody>
             {% for m in menu %}
             <tr>
@@ -22,6 +22,7 @@
                 </td>
             </tr>
             </tbody>
+            {% endif %}
         </table>
     </div>
 
