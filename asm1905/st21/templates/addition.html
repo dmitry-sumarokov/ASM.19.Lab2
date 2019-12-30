@@ -29,8 +29,17 @@
         {% if fields %}
         <div class="row">
             <form class="col s12" action="/add/{{number}}" method="POST">
-                {{ form.csrf_token }}
-                {{ form.name.label }} {{ form.name(size=20) }}
+                {% for field in form %}
+                {% if field.label != 'csrf_token' %}
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{ field.label }}
+                        {{ field }}
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+                <input class="waves-effect waves-light btn" type="submit" value="Hire!">
             </form>
         </div>
         {% else %}

@@ -20,6 +20,9 @@ class ScrumTeam:
         employee = Employee(e[1], e[2])
         return employee.fields_list()
 
+    def add_employee(self, employee):
+        return self.employees.append(employee)
+
     def edit_employee(self):
         self.employees[return_number()].edit()
         print(Fore.YELLOW + 'Saved!')
