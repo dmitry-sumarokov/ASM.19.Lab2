@@ -1,0 +1,59 @@
+<div style="display: flex;">
+    <div class="card-panel hoverable menu-container amber accent-1">
+        <table>
+            <thead>
+            <tr>
+                <th>Menu items:</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for m in menu %}
+            <tr>
+                <td>
+                    <a href="/{{m[1]}}/" class="waves-effect waves-teal btn-flat">{{m[0]}}</a>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="scrum-container">
+        {% if length==0 %}
+        <div class="card-panel pink lighten-4">
+            There are no employees!
+        </div>
+        {% else %}
+
+        {% block content %}
+
+
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Special</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for employee in employees %}
+            {% with employee=employee[1], num=loop.index0 %}
+            {% include "employee.html" ignore missing %}
+            {% endwith %}
+            {% endfor %}
+            </tbody>
+        </table>
+
+
+        {% endblock %}
+
+        {% endif %}
+    </div>
+</div>
+
+<script type="text/javascript" src="../static/materialize/js/materialize.min.js"></script>
+</body>

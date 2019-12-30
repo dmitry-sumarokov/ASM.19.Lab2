@@ -1,0 +1,35 @@
+<div style="display: flex;">
+    <div class="card-panel hoverable teal accent-1">
+        <table>
+            <thead>
+            <tr>
+                <th>Menu items:</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if menu %}
+            {% for m in menu %}
+            <tr>
+                <td>
+                    <a class="waves-effect waves-light btn-flat" href="/add/{{loop.index0}}">{{m[0]}}</a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+
+            <tr>
+                <td>
+                    <a href="/" class="waves-effect waves-light btn-flat">Go back</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% with endpoint=endpoint, number=number, form=form, fields=fields %}
+    {% include "form.html" ignore missing %}
+    {% endwith %}
+</div>
+
+<script src="../static/materialize/js/materialize.min.js" type="text/javascript"></script>
+</body>

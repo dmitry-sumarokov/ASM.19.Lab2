@@ -1,0 +1,15 @@
+<tr>
+    {% for field in employee %}
+    {% if field != 'csrf_token' %}
+    <td>{{employee[field]}}</td>
+    {% endif %}
+    {% endfor %}
+    <td>
+        <a href="/edit/{{num}}">
+            <i class="material-icons">edit</i>
+        </a>
+        <a href="/remove/{{num}}">
+            <i class="material-icons">delete</i>
+        </a>
+    </td>
+</tr>
