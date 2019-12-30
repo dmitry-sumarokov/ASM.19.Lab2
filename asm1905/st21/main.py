@@ -25,6 +25,15 @@ class AdditionForm(FlaskForm):
     pass
 
 
+def get_form_data(number):
+    data = request.form
+    data = data.to_dict()
+    e = ADDITION_MENU[number]
+    employee = Employee(e[1], e[2])
+    data['Type'] = employee.get_type()
+    return data
+
+
 @app.route('/')
 def main():
     employees_num = enumerate(scrumTeam.employees)
@@ -41,11 +50,7 @@ def add_student(number):
     if request.method == 'POST':
         form = AdditionForm()
         if form.validate_on_submit():
-            data = request.form
-            e = ADDITION_MENU[number]
-            employee = Employee(e[1], e[2])
-            data = data.to_dict()
-            data['Type'] = employee.get_type()
+            data = get_form_data(number)
             scrumTeam.add_employee(data)
             return redirect('/')
         return redirect('/add/')
@@ -57,13 +62,20 @@ def add_student(number):
         form = AdditionForm()
         for field in fields:
             delattr(AdditionForm, field)
-        return render_header() + render_template('addition.html', form=form, number=number,
+        return render_header() + render_template('addition.html', form=form, number=number, endpoint='add',
                                                  fields=fields)
 
 
 @app.route('/edit/<int:number>', methods=['GET', 'POST'])
 def change_student(number):
-    if number is not None:
+    if request.method == 'POST':
+        form = AdditionForm()
+        if form.validate_on_submit():
+            data = get_form_data(number)
+            scrumTeam.edit_employee(data, number)
+            return redirect('/')
+
+    elif number is not None:
         employee_data = scrumTeam.employees[number]
         fields = scrumTeam.get_fields(number)
         for field in fields:
@@ -71,15 +83,8 @@ def change_student(number):
         form = AdditionForm()
         for field in fields:
             delattr(AdditionForm, field)
-        return render_header() + render_template('addition.html', form=form, number=number,
+        return render_header() + render_template('addition.html', form=form, number=number, endpoint='edit',
                                                  fields=fields)
-
-    if request.method == 'POST':
-        form = AdditionForm()
-        if form.validate_on_submit():
-            scrumTeam.edit_employee(number)
-            return redirect('/')
-        return redirect('/add/')
 
 
 @app.route('/remove/<int:number>', methods=['GET', 'POST'])

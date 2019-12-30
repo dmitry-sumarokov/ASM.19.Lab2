@@ -26,7 +26,7 @@
         </table>
     </div>
 
-    {% with endpoint='add', number=number, form=form, fields=fields %}
+    {% with endpoint=endpoint, number=number, form=form, fields=fields %}
     {% include "form.html" ignore missing %}
     {% endwith %}
 </div>
