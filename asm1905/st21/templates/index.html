@@ -11,7 +11,7 @@
             {% for m in menu %}
             <tr>
                 <td>
-                    <a href="/add/" class="waves-effect waves-teal btn-flat">{{m[0]}}</a>
+                    <a href="/{{m[1]}}/" class="waves-effect waves-teal btn-flat">{{m[0]}}</a>
                 </td>
             </tr>
             {% endfor %}
@@ -28,10 +28,25 @@
 
         {% block content %}
 
-        {% for employee in employees%}
-        {% include "employee.html" ignore missing%}
-        {% else %}
-        {% endfor %}
+
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Special</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for employee in employees %}
+            {% with employee=employee[1], num=loop.index0 %}
+            {% include "employee.html" ignore missing %}
+            {% endwith %}
+            {% endfor %}
+            </tbody>
+        </table>
+
 
         {% endblock %}
 

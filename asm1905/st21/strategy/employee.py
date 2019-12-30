@@ -27,7 +27,7 @@ class Employee(ABC):
 class Behavior:
     @staticmethod
     def get_basic_fields() -> list:
-        return ['Name', 'Age']
+        return ['Name', 'Age', 'Type']
 
     @staticmethod
     def show_data(employee):

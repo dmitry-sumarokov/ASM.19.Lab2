@@ -1,34 +1,15 @@
-<div>
-    <table>
-        <thead>
-        <tr>
-            <th>Name:</th>
-            <th>Age:</th>
-            <th>Special:</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        {% for employee in employees %}
-        <tr>
-            {% for i,field in employee.items() %}
-            <td>{{employee[field]}}</td>
-            <td>{{i}}</td>
-            <td>{{field}}</td>
-            {% endfor %}
-            <td>aa {{employee.Name}}</td>
-            <td>aa {{employee.Age}}</td>
-            <td>aa {{employee.special}}</td>
-            <td>
-                <a href="/edit/{{loop.index0}}">
-                    <i class="material-icons">edit</i>
-                </a>
-                <a href="/remove/{{loop.index0}}">
-                    <i class="material-icons">delete</i>
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
+<tr>
+    {% for field in employee %}
+    {% if field != 'csrf_token' %}
+    <td>{{employee[field]}}</td>
+    {% endif %}
+    {% endfor %}
+    <td>
+        <a href="/edit/{{num}}">
+            <i class="material-icons">edit</i>
+        </a>
+        <a href="/remove/{{num}}">
+            <i class="material-icons">delete</i>
+        </a>
+    </td>
+</tr>

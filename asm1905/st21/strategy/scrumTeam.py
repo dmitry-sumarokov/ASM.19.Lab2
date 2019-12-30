@@ -23,12 +23,12 @@ class ScrumTeam:
     def add_employee(self, employee):
         return self.employees.append(employee)
 
-    def edit_employee(self):
-        self.employees[return_number()].edit()
+    def edit_employee(self, employee, num):
+        self.employees[num] = employee
         print(Fore.YELLOW + 'Saved!')
 
-    def remove_employee(self):
-        self.employees.pop(return_number())
+    def remove_employee(self, num):
+        self.employees.pop(num)
         print(Fore.YELLOW + 'Deleted!')
 
     def show_scrum_team(self):
@@ -44,25 +44,17 @@ class ScrumTeam:
     # is the inverse operation, whereby a byte stream (from a binary file or bytes-like object) is converted back
     # into an object hierarchy.
     def save_to_file(self):
-        fn = input(Fore.CYAN + 'Enter file name: ')
         try:
-            file = open(
-                os.path.join(os.path.abspath(__name__).replace('.st21.scrumTeam', '/st21'),
-                             fn
-                             ), 'wb')
+            file = open('scrumTeam', 'wb')
         except IOError:
-            file = open(os.path.join(os.path.abspath(__name__).replace('.st21.scrumTeam', '/st21'),
-                                     fn
-                                     ), 'xb')
+            file = open('scrumTeam', 'xb')
         pickle.dump(self.employees, file)
-        print(Fore.MAGENTA + 'Saved to "' + fn + '" file!')
+        print(Fore.MAGENTA + 'Saved to "' + 'scrumTeam' + '" file!')
 
     def load_from_file(self):
-        # fn = input(Fore.CYAN + 'Enter file name: ')
         try:
-            print(os.path.abspath(__name__))
-            file = open('afaf', 'rb')
+            file = open('scrumTeam', 'rb')
             self.employees = pickle.load(file)
-            # print(Fore.MAGENTA + 'Loaded from "' + fn + '" file!')
+            print(self.employees)
         except IOError:
             print(Fore.MAGENTA + 'File doesn`t exist!')

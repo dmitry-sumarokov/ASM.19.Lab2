@@ -3,9 +3,9 @@ from .scrumMaster import ScrumMaster, ScrumMasterBehavior
 from .productOwner import ProductOwner, ProductOwnerBehavior
 
 MENU = [
-    ['Add employee', 'add_employee'],
-    ['Export to file', 'save_to_file'],
-    ['Import from file', 'load_from_file']
+    ['Add employee', 'add'],
+    ['Export to file', 'export'],
+    ['Import from file', 'load']
 ]
 
 ADDITION_MENU = [
