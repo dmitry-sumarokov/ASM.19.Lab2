@@ -16,11 +16,6 @@ class DeveloperBehavior:
         temp.append('Experience (years)')
         return temp
 
-    @staticmethod
-    def show(employee):
-        print('Developer:')
-        Behavior.show_data(employee)
-        print('Experience (years): ', str(employee.experience))
 
     @staticmethod
     def edit(employee):

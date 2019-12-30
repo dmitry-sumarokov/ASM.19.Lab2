@@ -6,8 +6,8 @@
                 <th>Menu items:</th>
             </tr>
             </thead>
-            {% if menu %}
             <tbody>
+            {% if menu %}
             {% for m in menu %}
             <tr>
                 <td>
@@ -15,6 +15,7 @@
                 </td>
             </tr>
             {% endfor %}
+            {% endif %}
 
             <tr>
                 <td>
@@ -22,33 +23,12 @@
                 </td>
             </tr>
             </tbody>
-            {% endif %}
         </table>
     </div>
 
-    <div class="scrum-container">
-        {% if fields %}
-        <div class="row">
-            <form class="col s12" action="/add/{{number}}" method="POST">
-                {% for field in form %}
-                {% if field.label != 'csrf_token' %}
-                <div class="row">
-                    <div class="input-field col s12">
-                        {{ field.label }}
-                        {{ field }}
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
-                <input class="waves-effect waves-light btn" type="submit" value="Hire!">
-            </form>
-        </div>
-        {% else %}
-        <div class="card-panel pink lighten-4">
-            Please, choose the employee type!
-        </div>
-        {% endif %}
-    </div>
+    {% with endpoint='add', number=number, form=form, fields=fields %}
+    {% include "form.html" ignore missing %}
+    {% endwith %}
 </div>
 
 <script src="../static/materialize/js/materialize.min.js" type="text/javascript"></script>

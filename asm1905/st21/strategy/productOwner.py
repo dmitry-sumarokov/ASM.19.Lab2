@@ -17,12 +17,6 @@ class ProductOwnerBehavior:
         return temp
 
     @staticmethod
-    def show(employee):
-        print('Product owner:')
-        Behavior.show_data(employee)
-        print('Payment: ', str(employee.payment))
-
-    @staticmethod
     def edit(employee):
         Behavior.edit(employee)
         employee.payment = return_number('Payment (EUR): ')

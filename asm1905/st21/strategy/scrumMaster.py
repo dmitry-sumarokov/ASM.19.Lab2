@@ -17,12 +17,6 @@ class ScrumMasterBehavior:
         return temp
 
     @staticmethod
-    def show(employee):
-        print('Scrum master:')
-        Behavior.show_data(employee)
-        print('Projects: ', str(employee.projects))
-
-    @staticmethod
     def edit(employee):
         Behavior.edit(employee)
         employee.projects = return_number('Projects: ')

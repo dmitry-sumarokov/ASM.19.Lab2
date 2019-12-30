@@ -25,19 +25,9 @@ class ScrumTeam:
 
     def edit_employee(self, employee, num):
         self.employees[num] = employee
-        print(Fore.YELLOW + 'Saved!')
 
     def remove_employee(self, num):
         self.employees.pop(num)
-        print(Fore.YELLOW + 'Deleted!')
-
-    def show_scrum_team(self):
-        for i, employee in enumerate(self.employees):
-            print(Fore.MAGENTA + '~Employee №' + str(i) + '~')
-            employee.print_data()
-
-    def listen_personal(self):
-        self.employees[return_number()].saying()
 
     # The pickle module implements binary protocols for serializing and de-serializing a Python object structure.
     # “Pickling” is the process whereby a Python object hierarchy is converted into a byte stream, and “unpickling”
@@ -55,6 +45,5 @@ class ScrumTeam:
         try:
             file = open('scrumTeam', 'rb')
             self.employees = pickle.load(file)
-            print(self.employees)
         except IOError:
             print(Fore.MAGENTA + 'File doesn`t exist!')
