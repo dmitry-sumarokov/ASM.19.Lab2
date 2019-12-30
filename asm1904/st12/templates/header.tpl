@@ -1,4 +1,5 @@
 <html>
-<head><title>Команда</title></head>
+<head><title>Group</title></head>
 <body>
-<h3>Список команды</h3>
+<h3>Group</h3>
+<p><b>{{special}}</b></p>

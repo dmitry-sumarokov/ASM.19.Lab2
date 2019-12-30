@@ -1,61 +1,42 @@
-from group import group
-from human import Human
+# from group import Group
 from flask import Flask
 from flask import g
+from StudentAbstract import Group
 
 app = Flask(__name__)
 
-def GetGroup():
-    if 'group' not in g:
-        g.group = group()
-    return g.group
-
-
-def GetHuman():
-    if 'Human' not in g:
-        g.Human = Human()
-    return g.Human
+group = Group()
 
 
 @app.route("/")
 def index():
-    return GetGroup().PrintHeader() + GetGroup().ShowGroup() + GetGroup().PrintFooter()
+    return group.printHeader() + group.ShowGroup()
 
+@app.route("/ShowForm/<int:id>/<int:kind>")
+def ShowForm(id, kind):
+	return group.printHeader() + group.ShowForm(id, kind)
 
-@app.route("/HumanBehaviour/<int:id>/<int:f>")
-def HumanBehaviour(id, f):
-    return GetGroup().PrintHeader() + GetGroup().HumanBehaviour(id, f) + GetGroup().PrintFooter()
+@app.route("/New", methods=['POST'])
+def AddStudent():
+	return group.printHeader() + group.AddStudent() + group.PrintFooter()
 
+@app.route("/DeleteStudent/<int:id>/")
+def DeleteStudent(id):
+	return group.printHeader() + group.DeleteStudent(id) + group.PrintFooter()
 
-@app.route("/ShowForm/<int:id>")
-def ShowForm(id):
-    return GetGroup().PrintHeader() + GetGroup().ShowForm(id) + GetGroup().PrintFooter()
+@app.route("/DoSpecialAction/<int:id>/")
+def DoSpecialAction(id):
+	return group.DoSpecialAction(id) + group.PrintFooter()\
 
-
-@app.route("/DeleteItem/<int:id>")
-def DeleteItem(id):
-    return GetGroup().PrintHeader() + GetGroup().DeleteItem(id) + GetGroup().PrintFooter()
-
-
-@app.route("/AddItemEngineer", methods=['POST'])
-def AddItemEngineer():
-    return GetGroup().PrintHeader() + GetGroup().AddItemEngineer() + GetGroup().PrintFooter()
-
-
-@app.route("/AddItemSpecialist", methods=['POST'])
-def AddItemSpecialist():
-    return GetGroup().PrintHeader() + GetGroup().AddItemSpecialist() + GetGroup().PrintFooter()
-
-
-@app.route("/AddItemDepartment", methods=['POST'])
-def AddItemDepartment():
-    return GetGroup().PrintHeader() + GetGroup().AddItemDepartment() + GetGroup().PrintFooter()
-
+@app.route("/EditStudent/<int:id>/<int:kind>")
+def EditStudent(id, kind):
+	return group.EditStudent(id, kind) + group.PrintFooter()
 
 @app.teardown_appcontext
 def finish(ctx):
-    GetGroup().store()
-
+        group.store()
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
