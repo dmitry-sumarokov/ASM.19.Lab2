@@ -26,9 +26,25 @@
         </table>
     </div>
 
-    {% with endpoint=endpoint, number=number, form=form, fields=fields %}
-    {% include "form.html" ignore missing %}
-    {% endwith %}
+    <div class="scrum-container">
+        {% if msg %}
+        <div class="card-panel red lighten-4">
+            {{msg}}
+        </div>
+        {% endif %}
+
+        {% if number is defined %}
+
+        {% with endpoint=endpoint, number=number, form=form %}
+        {% include "form.html" ignore missing %}
+        {% endwith %}
+
+        {% else %}
+        <div class="card-panel pink lighten-4">
+            Please, choose the employee type!
+        </div>
+        {% endif %}
+    </div>
 </div>
 
 <script src="../static/materialize/js/materialize.min.js" type="text/javascript"></script>

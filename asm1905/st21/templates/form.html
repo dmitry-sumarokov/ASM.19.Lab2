@@ -1,23 +1,6 @@
-<div class="scrum-container">
-    {% if fields %}
-    <div class="row">
-        <form class="col s12" action="/{{endpoint}}/{{number}}" method="POST">
-            {% for field in form %}
-            {% if field.label != 'csrf_token' %}
-            <div class="row">
-                <div class="input-field col s12">
-                    {{ field.label }}
-                    {{ field }}
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-            <input class="waves-effect waves-light btn" type="submit" value="Hire!">
-        </form>
-    </div>
-    {% else %}
-    <div class="card-panel pink lighten-4">
-        Please, choose the employee type!
-    </div>
-    {% endif %}
+<div class="row">
+    <form class="col s12" action="/{{endpoint}}/{{number}}" method="POST">
+        {{form|safe}}
+        <input class="waves-effect waves-light btn" type="submit" value="Hire!">
+    </form>
 </div>
