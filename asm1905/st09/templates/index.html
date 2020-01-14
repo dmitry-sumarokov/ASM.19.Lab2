@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="title">
+      List of employees
+    </h1>
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Sex</th>
+            <th>Age</th>
+            <th>Special</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for emp in employee_list %}
+        <tr>
+            <td>{{emp.type}}</td>
+            <td>{{emp.name}}</td>
+            <td>{{emp.sex}}</td>
+            <td>{{emp.age}}</td>
+            <td>{{emp.special}}</td>
+            <td><a href="/edit_employee/{{loop.index0}}">Edit</a></td>
+            <td><a href="/remove_employee/{{loop.index0}}">Remove</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/add_employee">Add Employee</a>
+    <br>
+    <a href="/clear_group">Clear</a>
+    <br>
+    <a href="/save_to_file">Save To File</a>
+    <br>
+    <a href="/load_from_file">Load From File</a>
+{% endblock %}

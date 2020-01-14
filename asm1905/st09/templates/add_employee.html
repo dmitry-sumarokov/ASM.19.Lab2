@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  Add Employee
+</h1>
+<form method="POST">
+  <p>Employee Type</p>
+  <select name="type">
+    <option value="0">Начальник</option>
+    <option value="1">Инженер</option>
+    <option value="2">Специалист</option>
+    <option value="3">Главного специалист</option>
+  </select>
+  <br>
+  <p>Employee Name</p>
+  <input type="text" name="name"></input>
+  <br>
+  <p>Employee Sex</p>
+  <input type="text" name="sex"></input>
+  <br>
+  <p>Employee Age</p>
+  <input type="text" name="age"></input>
+  <br>
+  <p>Employee Special</p>
+  <input type="text" name="special"></input>
+  <br>
+  <input type="submit" value="Upload">
+</form>
+{% endblock %}
